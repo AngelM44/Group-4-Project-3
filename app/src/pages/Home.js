@@ -36,11 +36,17 @@ const Home = ({ setAuth }) => {
         }}
         gutterBottom
       >
-        Welcome Back
+        Are You Ready?
       </Typography>
 
-      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
+      <Button size="small" variant="contained" onClick={() => setAuth(false)}>
         Log out
+      </Button>
+      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
+        Training
+      </Button>
+      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
+        Medical
       </Button>
     </Container>
   );
