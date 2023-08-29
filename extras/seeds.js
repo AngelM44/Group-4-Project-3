@@ -2,27 +2,37 @@ const seedDataUsers = [
   {
 	name: "Madison Holtcombe",
 	username: 'holtcombe',
-	dod_number: '7842931253'
+	DOD_number: '7842931253',
+	medical_id: 1,
+	training_id: 1
   },
   {
 	name: "Anne MacCloskey",
 	username: 'macCloskey',
-	dod_number: '1690369484'
+	DOD_number: '1690369484',
+	medical_id: 2,
+	training_id: 2
   },
   {
 	name: "Fujita Yukaharo",
 	username: 'yukaharo',
-	dod_number: '1578897975'
+	DOD_number: '1578897975',
+	medical_id: 3,
+	training_id: 3
   },
   {
 	name: "Antonis Koumoundouros",
 	username: 'koumoundouros',
-	dod_number: '5632474568'
+	DOD_number: '5632474568',
+	medical_id: 4,
+	training_id: 4
   },
   {
 	name: "Phegeus Baptiste",
 	username: 'baptiste',
-	dod_number: '2159602608'
+	DOD_number: '2159602608',
+	medical_id: 5,
+	training_id: 5
   }
 ]
 
@@ -31,30 +41,35 @@ const seedDataMedical = [
 	id: 1,
 	status: true,
 	checkup: '4/9/2023',
+	"checkup due by": '4/9/2023',
 	immunization: true
   },
   {
 	id: 2,
 	status: true,
-	checkup: '2/8/2003', 
+	checkup: '2/8/2003',
+	"checkup due by": '4/9/2023', 
 	immunization: false
   },
   {
 	id: 3,
 	status: true,
 	checkup: '8/7/2002',
+	"checkup due by": '4/9/2023',
 	immunization: true
   },
   {
 	id: 4,
 	status: false,
 	checkup: '11/11/2021',
+	"checkup due by": '4/9/2023',
 	immunization: false
   },
   {
 	id: 5,
 	status: true,
 	checkup: '6/18/2000',
+	"checkup due by": '4/9/2023',
 	immunization: true
   }
 ]
