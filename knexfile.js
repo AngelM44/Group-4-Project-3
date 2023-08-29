@@ -13,7 +13,6 @@ module.exports = {
       user: "postgres",
       port: 5432,
       database: "deployment_db",
-      filename: "postgres://postgres:docker@localhost/pg-docker",
     },
   },
 
