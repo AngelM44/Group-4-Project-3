@@ -47,6 +47,7 @@ const Home = ({ setAuth }) => {
             <StyledLink variant="h6" noWrap component="div" to="/">Home</StyledLink>
             <StyledLink variant="h6" noWrap component="div" to="/Training">Training</StyledLink>
             <StyledLink variant="h6" noWrap component="div" to="/Medical">Medical</StyledLink>
+            <StyledLink variant="h6" noWrap component="div" to="/login">Logout</StyledLink>
         </Toolbar>
     </StyledAppBar>
   </Box>
