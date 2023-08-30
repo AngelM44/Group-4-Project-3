@@ -10,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 
 const Home = ({ setAuth }) => {
-  const theme = useTheme();
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
@@ -33,51 +32,8 @@ const Home = ({ setAuth }) => {
       </Toolbar>
     </AppBar>
   </Box>
-
-=======
-    <Container
-      maxWidth="lg"
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        height: "100vh",
-      }}
-    >
-      <Box sx={{ mb: 5, mt: -10 }}>
-        <Logo />
-      </Box>
-      <Typography
-        sx={{
-          textAlign: "center",
-          marginTop: "-4rem",
-          fontSize: "5rem",
-          fontWeight: 700,
-          letterSpacing: "-0.5rem",
-          display: "inline-block",
-          whiteSpace: "nowrap",
-          [theme.breakpoints.down("sm")]: {
-            fontSize: "4rem",
-            letterSpacing: "-0.4rem",
-          },
-        }}
-        gutterBottom
-      >
-        Are You Ready?
-      </Typography>
-
-      <Button size="small" variant="contained" onClick={() => setAuth(false)}>
-        Log out
-      </Button>
-      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
-        Training
-      </Button>
-      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
-        Medical
-      </Button>
-    </Container>
-  );
+  )
 };
+
 
 export default Home;
