@@ -6,9 +6,9 @@ exports.up = function (knex) {
   return knex.schema
     .createTable("medical", function (table) {
       table.increments("id").primary();
-      table.boolean("status");
+      table.enu("status", ["green", "red"]);
       table.date("checkup due by");
-      table.boolean("immunization");
+      table.boolean("immunization due");
     })
 
     .createTable("training_type", function (table) {
@@ -19,9 +19,9 @@ exports.up = function (knex) {
 
     .createTable("training", function (table) {
       table.increments("id").primary();
-      table.string("required");
-      table.boolean("status");
-      table.integer("training_type");
+      table.enu("status", ["green", "red"]);
+      table.integer("training_type_id");
+      table.foreign("training_type_id").references("training_type.id");
       table.date("date_completed");
     })
 
@@ -29,15 +29,11 @@ exports.up = function (knex) {
       table.increments("id").primary();
       table.string("name").notNullable();
       table.integer("DOD_number").notNullable();
+      table.enu("deployable", ["Yes", "No"]);
       table.integer("medical_id");
       table.integer("training_id");
-    })
-
-    .then(() => {
-      return knex.schema.table("personnel", function (table) {
-        table.foreign("medical_id").references("medical.id");
-        table.foreign("training_id").references("training.id");
-      });
+      table.foreign("medical_id").references("medical.id");
+      table.foreign("training_id").references("training.id");
     });
 };
 
