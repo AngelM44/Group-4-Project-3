@@ -7,30 +7,51 @@ exports.seed = async function (knex) {
   await knex("medical").del();
   await knex("personnel").del();
 
-  const medicalData = Array.from({ length: 10 }, () => ({
-    status: faker.random.arrayElement(["green", "red"]),
-    "checkup due by": faker.date.future(),
-    "immunization due": faker.datatype.boolean(),
-  }));
 
-  const trainingTypeData = Array.from({ length: 5 }, () => ({
-    name: faker.hacker.verb() + " training",
-    description: faker.company.catchPhrase(),
-  }));
+  const medicalData = [];
 
-  const trainingData = Array.from({ length: 10 }, () => ({
-    status: faker.random.arrayElement(["green", "red"]),
-    training_type_id: faker.datatype.number({ min: 1, max: 5 }),
-    date_completed: faker.date.past(),
-  }));
+  for (let i = 1; i <= 10; i++) {
+    medicalData.push({
+      id: i,
+      status: faker.random.arrayElement(["green", "red"]),
+      "checkup due by": faker.date.future(),
+      "immunization due": faker.datatype.boolean(),
+    });
+  }
 
-  const personnelData = Array.from({ length: 10 }, () => ({
-    name: faker.name.findName(),
-    DOD_number: faker.datatype.number({ min: 1000000000, max: 2147483647 }),
-    deployable: faker.random.arrayElement(["Yes", "No"]),
-    medical_id: faker.datatype.number({ min: 1, max: 10 }),
-    training_id: faker.datatype.number({ min: 1, max: 10 }),
-  }));
+  const trainingTypeData = [];
+
+  for (let i = 1; i <= 10; i++) {
+    trainingTypeData.push({
+      id: i,
+      name: faker.hacker.verb() + " training",
+      description: faker.company.catchPhrase(),
+    });
+  }
+
+  const trainingData = [];
+
+  for (let i = 1; i <= 10; i++) {
+    trainingData.push({
+      id: i,
+      status: faker.random.arrayElement(["green", "red"]),
+      training_type_id: i,
+      date_completed: faker.date.past(),
+    });
+  }
+  
+  const personnelData = [];
+
+  for (let i = 1; i <= 10; i++) {
+    personnelData.push({
+      id: i,
+      name: faker.name.findName(),
+      DOD_number: faker.datatype.number({ min: 1000000000, max: 2147483647 }),
+      deployable: faker.random.arrayElement(["Yes", "No"]),
+      medical_id: i,
+      training_id: i,
+    });
+  }
 
   await knex("medical").insert(medicalData);
   await knex("training_type").insert(trainingTypeData);

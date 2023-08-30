@@ -30,8 +30,8 @@ exports.up = function (knex) {
       table.string("name").notNullable();
       table.integer("DOD_number").notNullable();
       table.enu("deployable", ["Yes", "No"]);
-      table.integer("medical_id");
-      table.integer("training_id");
+      table.integer("medical_id").unique().notNullable();
+      table.integer("training_id").unique().notNullable();
       table.foreign("medical_id").references("medical.id");
       table.foreign("training_id").references("training.id");
     });
