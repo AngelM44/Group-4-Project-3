@@ -54,25 +54,24 @@ tables.forEach((table) => {
     }
   });
 
-  app.get(`/${table}/:id`, async (req, res) => {
+  app.get(`/${table}/:identifier`, async (req, res) => {
     try {
-      const data = await knex(table).where("id", req.params.id).select("*");
-      res.status(200).json(data);
-    } catch (err) {
-      console.log(err);
-      res.status(400).json({ message: "Bad request", error: err });
-    }
-  });
+      console.log(
+        `Fetching ${table} with identifier: ${req.params.identifier}`
+      );
+      let query = knex(table).select("*");
 
-  app.get("/personnel/:name", async (req, res) => {
-    try {
-      const data = await knex("personnel")
-        .where("name", "ilike", `%${req.params.name}%`)
-        .select("*");
+      if (!isNaN(req.params.identifier)) {
+        query.where("id", req.params.identifier);
+      } else {
+        query.where("name", "ilike", `%${req.params.identifier}%`);
+      }
+
+      const data = await query;
       if (data.length > 0) {
         res.status(200).json(data);
       } else {
-        res.status(404).json({ message: "Personnel not found" });
+        res.status(404).json({ message: "Data not found" });
       }
     } catch (err) {
       console.log(err);
@@ -80,15 +79,31 @@ tables.forEach((table) => {
     }
   });
 
-    app.post(`/${table}`, async (req, res) => {
-      try {
-        await knex(table).insert(req.body);
-        res.status(201).json(req.body);
-      } catch (err) {
-        console.log(err);
-        res.status(400).json({ message: "Bad request", error: err });
-      }
-    });
+  //   app.get("/personnel/:name", async (req, res) => {
+  //     try {
+  //       const data = await knex("personnel")
+  //         .where("name", "ilike", `%${req.params.name}%`)
+  //         .select("*");
+  //       if (data.length > 0) {
+  //         res.status(200).json(data);
+  //       } else {
+  //         res.status(404).json({ message: "Personnel not found" });
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //       res.status(400).json({ message: "Bad request", error: err });
+  //     }
+  //   });
+
+  app.post(`/${table}`, async (req, res) => {
+    try {
+      await knex(table).insert(req.body);
+      res.status(201).json(req.body);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ message: "Bad request", error: err });
+    }
+  });
 
   app.patch(`/${table}/:id`, async (req, res) => {
     try {
