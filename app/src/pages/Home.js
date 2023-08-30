@@ -35,7 +35,7 @@ const Home = ({ setAuth }) => {
   const [personnelData, setPersonnelData] = React.useState([]);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`localhost:8080/personnel/${id}`)
+    fetch(`http://localhost:8080/personnel/${id}`)
       .then((res) => res.json())
       .then((data) => setPersonnelData(data));
   }, [id]);
