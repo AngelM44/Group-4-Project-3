@@ -19,7 +19,6 @@ exports.up = function (knex) {
 
     .createTable("training", function (table) {
       table.increments("id").primary();
-      table.string("required");
       table.enu("status", ["green", "red"]);
       table.integer("training_type_id");
       table.foreign("training_type_id").references("training_type.id");
