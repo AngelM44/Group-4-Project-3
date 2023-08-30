@@ -11,11 +11,11 @@ import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 
 const colorPalette = {
-  primaryDark: "#2C3531",
-  primary: "#116466",
-  secondary: "#D9B08C",
-  tertiary: "#FFCB9A",
-  neutral: "#D1E8E2",
+  primaryDark: "light blue",
+  primary: "light blue",
+  secondary: "white",
+  tertiary: "white",
+  neutral: "white",
 };
 const StyledLink = styled(Link)({
   textDecoration: 'none',
@@ -44,9 +44,9 @@ const Home = ({ setAuth }) => {
                 Deployment Readiness Tracker
             </Typography>
             {/* Navigation Links */}
-            <StyledLink to="/">Home</StyledLink>
-            <StyledLink to="/training">Training</StyledLink>
-            <StyledLink to="/medical">Medical</StyledLink>
+            <StyledLink variant="h6" noWrap component="div" to="/">Home</StyledLink>
+            <StyledLink variant="h6" noWrap component="div" to="/Training">Training</StyledLink>
+            <StyledLink variant="h6" noWrap component="div" to="/Medical">Medical</StyledLink>
         </Toolbar>
     </StyledAppBar>
   </Box>
