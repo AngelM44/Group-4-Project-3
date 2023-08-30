@@ -34,7 +34,7 @@ const Home = ({ setAuth }) => {
     <Box sx={{ flexGrow: 1 }}>
     <StyledAppBar position="static">
         <Toolbar>
-        < img src="favicon.ico" alt="logo" style={{height: 45, marginRight: 10 }} />
+        < img src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png" alt="logo" style={{height: 45, marginRight: 10 }} />
             <Typography
                 variant="h6"
                 noWrap
