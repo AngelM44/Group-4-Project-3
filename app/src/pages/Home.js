@@ -7,30 +7,48 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from '@mui/material/styles';
+import { Link } from "react-router-dom";
 
+const colorPalette = {
+  primaryDark: "#2C3531",
+  primary: "#116466",
+  secondary: "#D9B08C",
+  tertiary: "#FFCB9A",
+  neutral: "#D1E8E2",
+};
+const StyledLink = styled(Link)({
+  textDecoration: 'none',
+  color: colorPalette.neutral,
+  marginLeft: '1rem',
+  '&:hover': {
+      color: colorPalette.secondary
+  }
+});
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: colorPalette.primary,
+});
 
 const Home = ({ setAuth }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Home Page
-        </Typography>
-        <Button font="bold" size="large" variant="contained" >Training</Button>
-        <Button size="large" variant="contained" >Medical</Button>
-        <Button size="large" variant="contained" onClick={() => setAuth(false)}>Log out</Button>
-      </Toolbar>
-    </AppBar>
+    <StyledAppBar position="static">
+        <Toolbar>
+        < img src="favicon.ico" alt="logo" style={{height: 45, marginRight: 10 }} />
+            <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: colorPalette.secondary }}
+            >
+                Deployment Readiness Tracker
+            </Typography>
+            {/* Navigation Links */}
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/training">Training</StyledLink>
+            <StyledLink to="/medical">Medical</StyledLink>
+        </Toolbar>
+    </StyledAppBar>
   </Box>
   )
 };
