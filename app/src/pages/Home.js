@@ -62,16 +62,16 @@ const Home = ({ setAuth }) => {
             Deployment Readiness Tracker
           </Typography>
           {/* Navigation Links */}
-          <StyledLink variant="h6" noWrap component="div" to="/">
+          <StyledLink variant="h6" component="div" to="/">
             Home
           </StyledLink>
-          <StyledLink variant="h6" noWrap component="div" to="/Training">
+          <StyledLink variant="h6" component="div" to="/Training">
             Training
           </StyledLink>
-          <StyledLink variant="h6" noWrap component="div" to="/Medical">
+          <StyledLink variant="h6" component="div" to="/Medical">
             Medical
           </StyledLink>
-          <StyledLink variant="h6" noWrap component="div" to="/login">
+          <StyledLink variant="h6" component="div" to="/login">
             Logout
           </StyledLink>
         </Toolbar>
