@@ -10,6 +10,30 @@ app.use(express.json());
 
 const tables = ["medical", "training_type", "training", "personnel"];
 
+app.post("/personnel", async (req, res) => {
+  try {
+    const [{ id: medicalId }] = await knex("medical")
+      .insert({})
+      .returning("id");
+    const [{ id: trainingId }] = await knex("training")
+      .insert({})
+      .returning("id");
+
+    await knex("personnel").insert({
+      name: req.body.name,
+      DOD_number: req.body.DOD_number,
+      deployable: req.body.deployable,
+      medical_id: medicalId,
+      training_id: trainingId,
+    });
+
+    res.status(201).json({ message: "Personnel added successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Bad request", error: err });
+  }
+});
+
 tables.forEach((table) => {
   app.get(`/${table}`, async (req, res) => {
     try {
@@ -56,6 +80,15 @@ tables.forEach((table) => {
     }
   });
 
+    app.post(`/${table}`, async (req, res) => {
+      try {
+        await knex(table).insert(req.body);
+        res.status(201).json(req.body);
+      } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: "Bad request", error: err });
+      }
+    });
 
   app.patch(`/${table}/:id`, async (req, res) => {
     try {
@@ -77,23 +110,6 @@ tables.forEach((table) => {
     }
   });
 });
-
-app.post("/personnel", async (req, res) => {
-  try {
-    await knex("personnel").insert({
-      name: req.body.name,
-      DOD_number: req.body.DOD_number,
-      deployable: req.body.deployable,
-    });
-
-    res.status(201).json({ message: "Personnel added successfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: "Bad request", error: err });
-  }
-});
-
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
