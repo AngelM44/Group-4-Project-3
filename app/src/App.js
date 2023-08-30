@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setAuth={setAuth} />} />
         <Route path="/signup" element={<Signup setAuth={setAuth} />} />
+        <Route path="/personnel/:id" element={<Home setAuth={setAuth} />} />
         <Route
           path="/"
           element={
