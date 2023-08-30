@@ -1,3 +1,5 @@
+//To run, type: "node ./view/view_personnel.js" in the base directory of the project in the terminal. Then press enter.
+
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
