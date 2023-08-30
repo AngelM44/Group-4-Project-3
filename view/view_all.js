@@ -16,6 +16,8 @@ for (let table of tableName) {
                 for (let j = 0; j < data.length; j++) {
                     if ((data[j][Object.keys(data[i])[i]] === null)) {
                         if (4 > largestStringLength) { largestStringLength = 4; }
+                    } else if ((data[j][Object.keys(data[i])[i]] === undefined)) {
+                        if (9 > largestStringLength) { largestStringLength = 9; }
                     } else {
                         if (data[j][Object.keys(data[i])[i]].toString().length > largestStringLength) {
                             largestStringLength = data[j][Object.keys(data[i])[i]].toString().length
@@ -30,11 +32,16 @@ for (let table of tableName) {
                 tableRow += (Object.keys(data[i])[i] + " ".repeat(ObjTableSpacing[i] - Object.keys(data[i])[i].toString().length))
             }
             console.log(tableRow + `\n`);
-
+            
             for (let i = 0; i < data.length; i++) {
                 let displayedRow = "";
                 for (let j = 0; j < Object.keys(data[i]).length; j++) {
-                    let columnOffset = (data[i][Object.keys(data[i])[j]] === null ? 4 : data[i][Object.keys(data[i])[j]].toString().length)
+                    let columnOffset = 0;
+                    if (data[i][Object.keys(data[i])[j]] === undefined) {
+                        columnOffset = 9;
+                    } else {
+                        columnOffset = (data[i][Object.keys(data[i])[j]] === null ? 4 : data[i][Object.keys(data[i])[j]].toString().length)
+                    }
                     displayedRow += data[i][Object.keys(data[i])[j]] + " ".repeat(ObjTableSpacing[j] - columnOffset)
                 }
                 console.log(displayedRow);
