@@ -2,47 +2,43 @@ import { Button, Typography, Container, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Logo from "../components/Logo";
 //////////////////////////////////////
+//import ButtonAppBar from './NavBar.js';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+//import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+//import Typography from '@mui/material/Typography';
+//import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 const Home = ({ setAuth }) => {
   const theme = useTheme();
 
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        height: "100vh",
-      }}
-    >
-      <Box sx={{ mb: 5, mt: -10 }}>
-        <Logo />
-      </Box>
-      <Typography
-        sx={{
-          textAlign: "center",
-          marginTop: "-4rem",
-          fontSize: "5rem",
-          fontWeight: 700,
-          letterSpacing: "-0.5rem",
-          display: "inline-block",
-          whiteSpace: "nowrap",
-          [theme.breakpoints.down("sm")]: {
-            fontSize: "4rem",
-            letterSpacing: "-0.4rem",
-          },
-        }}
-        gutterBottom
-      >
-        Welcome Back
-      </Typography>
+    <Box sx={{ flexGrow: 1 }}>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Home Page
+        </Typography>
+        <Button font="bold" size="large" variant="contained" >Training</Button>
+        <Button size="large" variant="contained" >Medical</Button>
+        <Button size="large" variant="contained" onClick={() => setAuth(false)}>Log out</Button>
+      </Toolbar>
+    </AppBar>
+  </Box>
 
-      <Button size="large" variant="contained" onClick={() => setAuth(false)}>
-        Log out
-      </Button>
-    </Container>
   );
 };
 
