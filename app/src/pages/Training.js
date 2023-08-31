@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import BasicTable from "../Table";
+import TrainingTable from "./TrainingTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
@@ -32,14 +32,14 @@ const StyledAppBar = styled(AppBar)({
 });
 
 const Training = ({ setAuth }) => {
-  const [personnelData, setPersonnelData] = useState([]);
+  const [trainingData, setTrainingData] = useState([]);
   //const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/personnel/`)
+    fetch(`http://localhost:8080/training/`)
       .then((res) => res.json())
-      .then((data) => setPersonnelData(data))
-      .catch(err => console.log(personnelData))
-  });
+      .then((data) => setTrainingData(data))
+      .catch(err => console.log(trainingData))
+  }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
@@ -84,7 +84,7 @@ const Training = ({ setAuth }) => {
         </div>
       ))}*/}
       <center>
-        <BasicTable col1="deployable" col2="id" col3="name" col4="DOD_number" col5="medical_id" col6="training_id" data={personnelData}/>
+        <TrainingTable data={trainingData}/>
       </center>
     </Box>
   );

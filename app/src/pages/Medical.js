@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import BasicTable from "../Table";
+import MedicalTable from "./MedicalTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
@@ -32,14 +32,14 @@ const StyledAppBar = styled(AppBar)({
 });
 
 const Medical = ({ setAuth }) => {
-  const [personnelData, setPersonnelData] = useState([]);
+  const [medicalData, setMedicalData] = useState([]);
   //const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/personnel/`)
+    fetch(`http://localhost:8080/medical/`)
       .then((res) => res.json())
-      .then((data) => setPersonnelData(data))
-      .catch(err => console.log(personnelData))
-  });
+      .then((data) => setMedicalData(data))
+      .catch(err => console.log(medicalData))
+  }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
@@ -76,15 +76,8 @@ const Medical = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
-      {/* {personnelData.map((personnel) => (
-        <div key={personnel.id}>
-          <h1>{personnel.name}</h1>
-          <h2>{personnel.DOD_number}</h2>
-          <h2>{personnel.deployable}</h2>
-        </div>
-      ))}*/}
       <center>
-        <BasicTable col1="deployable" col2="id" col3="name" col4="DOD_number" col5="medical_id" col6="training_id" data={personnelData}/>
+        <MedicalTable data={medicalData}/>
       </center>
     </Box>
   );

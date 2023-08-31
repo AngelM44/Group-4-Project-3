@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import BasicTable from "../Table";
+import BasicTable from "../PersonnelTable";
 
 const colorPalette = {
   primaryDark: "light blue",

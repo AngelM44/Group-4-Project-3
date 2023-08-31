@@ -25,17 +25,17 @@ export default function BasicTable(props) {
         <TableBody>
           {props.data.map((row) => (
             <TableRow
-              key={row.name}
+              key={row[props.col3]}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row[props.col3]}
               </TableCell>
-              <TableCell align="right">{row[props.col1]}</TableCell>
-              <TableCell align="right">{row[props.col2]}</TableCell>
-              <TableCell align="right">{row[props.col4]}</TableCell>
-              <TableCell align="right">{row[props.col5]}</TableCell>
-              <TableCell align="right">{row[props.col6]}</TableCell>
+              {props.col1 === undefined ? null : <TableCell align="right">{row[props.col1]}</TableCell>}
+              {props.col2 === undefined ? null : <TableCell align="right">{row[props.col2]}</TableCell>}
+              {props.col4 === undefined ? null : <TableCell align="right">{row[props.col4]}</TableCell>}
+              {props.col5 === undefined ? null : <TableCell align="right">{row[props.col5]}</TableCell>}
+              {props.col6 === undefined ? null : <TableCell align="right">{row[props.col6]}</TableCell>}
             </TableRow>
           ))}
         </TableBody>
