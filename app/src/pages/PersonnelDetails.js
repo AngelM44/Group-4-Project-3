@@ -1,12 +1,7 @@
-import { Button, Typography, Container, Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import Logo from "../components/Logo";
-//////////////////////////////////////
+import { Typography, Box } from "@mui/material";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { Link, useParams } from "react-router-dom";
 import PersonnelDetailsTable from "./PersonnelDetailsTable";
@@ -38,14 +33,14 @@ const PersonnelDetails = ({ setAuth }) => {
     fetch(`http://localhost:8080/personnel/${id}`)
       .then((res) => res.json())
       .then((data) => setPersonnelData(data))
-      .catch(err => console.log(personnelData))
-  }, []);
+      .catch(err => console.log(err))
+  }, [id]);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
         <Toolbar>
           <img
-            src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
+            src="https://pnghq.com/wp-content/uploads/the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
             alt="logo"
             style={{ height: 45, marginRight: 10 }}
           />
@@ -76,7 +71,7 @@ const PersonnelDetails = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
-        <PersonnelDetailsTable data={personnelData}/>
+      <PersonnelDetailsTable data={personnelData} />
     </Box>
   );
 };

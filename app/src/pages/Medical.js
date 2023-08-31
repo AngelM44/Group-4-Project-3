@@ -13,23 +13,23 @@ import MedicalTable from "./MedicalTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
-  primaryDark: "light blue",
-  primary: "light blue",
-  secondary: "white",
-  tertiary: "white",
-  neutral: "white",
-};
-const StyledLink = styled(Link)({
-  textDecoration: 'none',
-  color: colorPalette.neutral,
-  marginLeft: '1rem',
-  '&:hover': {
-      color: colorPalette.secondary
-  }
-});
-const StyledAppBar = styled(AppBar)({
-  backgroundColor: colorPalette.primary,
-});
+    primaryDark: "olive",
+    primary: "light blue",
+    secondary: "orange",
+    tertiary: "white",
+    neutral: "white",
+  };
+  const StyledLink = styled(Link)({
+    textDecoration: "none",
+    color: colorPalette.tertiary,
+    marginLeft: "1rem",
+    "&:hover": {
+      color: colorPalette.secondary,
+    },
+  });
+  const StyledAppBar = styled(AppBar)({
+    backgroundColor: colorPalette.primaryDark,
+  });
 
 const Medical = ({ setAuth }) => {
   const [medicalData, setMedicalData] = useState([]);

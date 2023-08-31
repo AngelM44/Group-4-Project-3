@@ -1,44 +1,39 @@
 import { Typography, Box } from "@mui/material";
-//////////////////////////////////////
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { styled } from "@mui/material/styles";
 import { Link, useParams } from "react-router-dom";
-import TrainingTable from "./TrainingTable";
+import TrainingTypeTable from "./TrainingTypeTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
-    primaryDark: "olive",
-    primary: "light blue",
-    secondary: "orange",
-    tertiary: "white",
-    neutral: "white",
-  };
-  const StyledLink = styled(Link)({
-    textDecoration: "none",
-    color: colorPalette.tertiary,
-    marginLeft: "1rem",
-    "&:hover": {
-      color: colorPalette.secondary,
-    },
-  });
-  const StyledAppBar = styled(AppBar)({
-    backgroundColor: colorPalette.primaryDark,
-  });
+  primaryDark: "light blue",
+  primary: "light blue",
+  secondary: "white",
+  tertiary: "white",
+  neutral: "white",
+};
+const StyledLink = styled(Link)({
+  textDecoration: "none",
+  color: colorPalette.neutral,
+  marginLeft: "1rem",
+  "&:hover": {
+    color: colorPalette.secondary,
+  },
+});
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: colorPalette.primary,
+});
 
-const Training = ({ setAuth }) => {
-  const [trainingData, setTrainingData] = useState([]);
+const TrainingType = ({ setAuth }) => {
+  const [trainingType, setTrainingType] = useState([]);
   const { id } = useParams();
   useEffect(() => {
-    const url = id
-      ? `http://localhost:8080/training/${id}`
-      : `http://localhost:8080/training/`;
-
-    fetch(url)
+    fetch(`http://localhost:8080/training_type/${id}`)
       .then((res) => res.json())
-      .then((data) => setTrainingData(data))
-      .catch((err) => console.log(trainingData));
+      .then((data) => setTrainingType(data))
+      .catch((err) => console.log(err));
   }, [id]);
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -76,9 +71,9 @@ const Training = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
-      <TrainingTable data={trainingData} />
+      <TrainingTypeTable data={trainingType} />
     </Box>
   );
 };
 
-export default Training;
+export default TrainingType;
