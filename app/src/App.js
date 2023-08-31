@@ -4,6 +4,8 @@ import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Medical from "./pages/Medical";
+import Training from "./pages/Training";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -26,6 +28,8 @@ function App() {
             )
           }
         />
+        <Route path="/Medical" element={<Medical setAuth={setAuth} />} />
+        <Route path="/Training" element={<Training setAuth={setAuth}/>} />
       </Routes>
     </>
   );
