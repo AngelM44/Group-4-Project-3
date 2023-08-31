@@ -34,6 +34,8 @@ function App() {
           }
         />
         <Route path="/medical" element={<Medical setAuth={setAuth} />} />
+        <Route path="/medical/:id" element={<Medical setAuth={setAuth} />} />
+
         <Route path="/training" element={<Training setAuth={setAuth} />} />
         <Route path="/training/:id" element={<Training setAuth={setAuth} />} />
         <Route

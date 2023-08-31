@@ -1,3 +1,4 @@
+export default function MedicalTable({ data }) {
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { PieChart } from '@mui/x-charts';
+  import { Link } from "react-router-dom";
 
 export default function MedicalTable({data}) {
   let green = 0
@@ -25,23 +27,25 @@ export default function MedicalTable({data}) {
         <TableHead>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell align="right">status</TableCell>
-            <TableCell align="right">checkup due by</TableCell>
-            <TableCell align="right">immunization due</TableCell>
+            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Checkup Due By</TableCell>
+            <TableCell align="right">Immunization Due</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
               key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.id}
+                <Link to={`/medical/${row.id}`}>{row.id}</Link>
               </TableCell>
               <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row['checkup due by']}</TableCell>
-              <TableCell align="right">{row['immunization due'] ? 'yes' : 'no'}</TableCell>
+              <TableCell align="right">{row["checkup due by"]}</TableCell>
+              <TableCell align="right">
+                {row["immunization due"] ? "yes" : "no"}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
