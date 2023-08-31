@@ -9,7 +9,7 @@ exports.seed = async function (knex) {
 
   const medicalData = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 20; i++) {
     medicalData.push({
       status: faker.random.arrayElement(["green", "red"]),
       "checkup due by": faker.date.future(),
@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
 
   const trainingTypeData = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 20; i++) {
     trainingTypeData.push({
       name: faker.hacker.verb() + " training",
       description: faker.company.catchPhrase(),
@@ -28,7 +28,7 @@ exports.seed = async function (knex) {
 
   const trainingData = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 20; i++) {
     trainingData.push({
       status: faker.random.arrayElement(["green", "red"]),
       training_type_id: i,
@@ -38,7 +38,7 @@ exports.seed = async function (knex) {
 
   const personnelData = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 20; i++) {
     personnelData.push({
       name: faker.name.findName(),
       DOD_number: faker.datatype.number({ min: 1000000000, max: 2147483647 }),
