@@ -6,10 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { PieChart } from '@mui/x-charts';
 
 export default function TrainingTable({data}) {
   console.log(data);
+  let ready = 0
+  let notready = 0
+  data.map((person) => {
+    if(person.status == 'green')
+      ready += 1
+    else {notready += 1}
+  })
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -37,5 +46,18 @@ export default function TrainingTable({data}) {
         </TableBody>
       </Table>
     </TableContainer>
+    <PieChart
+    series={[
+      {
+        data: [
+          { id: 0, value: ready, label: 'Ready', color: 'green' },
+          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
+        ],
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+  </>
   );
 }
