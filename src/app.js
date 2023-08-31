@@ -12,17 +12,6 @@ app.use(cors());
 
 const tables = ["medical", "training_type", "training", "personnel"];
 
-app.get("/personnel", async (req, res) => {
-  knex("personnel")
-    .select("*")
-    .then((data) => {
-      res.status(200).json(data);
-    })
-    .catch((err) =>
-      res.status(404).json({message: "The data you are looking for could not be found. Please try again"})
-    )
-});
-
 app.post("/personnel", async (req, res) => {
   try {
     const [{ id: medicalId }] = await knex("medical")
@@ -50,13 +39,22 @@ app.post("/personnel", async (req, res) => {
 tables.forEach((table) => {
   app.get(`/${table}`, async (req, res) => {
     try {
+      const data = await knex(table).select("*");
+      res.status(200).json(data);
+    } catch (err) {
+      console.log(err);
+      res.status(404).json({ message: "Data not found" });
+    }
+  });
+
+  app.get(`/${table}/:idOrName`, async (req, res) => {
+    try {
       let query = knex(table).select("*");
 
-      if (req.query.name) {
-        query.where("name", "ilike", `%${req.query.name}%`);
-      }
-      if (req.query.id) {
-        query.where("id", req.query.id);
+      if (isNaN(req.params.idOrName)) {
+        query.where("name", "ilike", `%${req.params.idOrName}%`);
+      } else {
+        query.where("id", req.params.idOrName);
       }
 
       const data = await query;
@@ -66,47 +64,6 @@ tables.forEach((table) => {
       res.status(404).json({ message: "Data not found" });
     }
   });
-
-  app.get(`/${table}/:identifier`, async (req, res) => {
-    try {
-      console.log(
-        `Fetching ${table} with identifier: ${req.params.identifier}`
-      );
-      let query = knex(table).select("*");
-
-      if (!isNaN(req.params.identifier)) {
-        query.where("id", req.params.identifier);
-      } else {
-        query.where("name", "ilike", `%${req.params.identifier}%`);
-      }
-
-      const data = await query;
-      if (data.length > 0) {
-        res.status(200).json(data);
-      } else {
-        res.status(404).json({ message: "Data not found" });
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(400).json({ message: "Bad request", error: err });
-    }
-  });
-
-  //   app.get("/personnel/:name", async (req, res) => {
-  //     try {
-  //       const data = await knex("personnel")
-  //         .where("name", "ilike", `%${req.params.name}%`)
-  //         .select("*");
-  //       if (data.length > 0) {
-  //         res.status(200).json(data);
-  //       } else {
-  //         res.status(404).json({ message: "Personnel not found" });
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //       res.status(400).json({ message: "Bad request", error: err });
-  //     }
-  //   });
 
   app.post(`/${table}`, async (req, res) => {
     try {
