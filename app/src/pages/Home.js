@@ -14,22 +14,22 @@ import { useParams } from "react-router-dom";
 import PersonnelTable from "../PersonnelTable";
 
 const colorPalette = {
-  primaryDark: "light blue",
+  primaryDark: "olive",
   primary: "light blue",
-  secondary: "white",
+  secondary: "orange",
   tertiary: "white",
   neutral: "white",
 };
 const StyledLink = styled(Link)({
   textDecoration: "none",
-  color: colorPalette.neutral,
+  color: colorPalette.tertiary,
   marginLeft: "1rem",
   "&:hover": {
     color: colorPalette.secondary,
   },
 });
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: colorPalette.primary,
+  backgroundColor: colorPalette.primaryDark,
 });
 
 const Home = ({ setAuth }) => {
@@ -58,7 +58,7 @@ const Home = ({ setAuth }) => {
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "block" },
-              color: colorPalette.secondary,
+              color: colorPalette.primary,
             }}
           >
             Deployment Readiness Tracker
