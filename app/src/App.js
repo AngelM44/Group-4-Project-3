@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Medical from "./pages/Medical";
 import Training from "./pages/Training";
 import PersonnelDetails from "./pages/PersonnelDetails";
+import TrainingType from "./pages/TrainingType";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -18,7 +19,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setAuth={setAuth} />} />
         <Route path="/signup" element={<Signup setAuth={setAuth} />} />
-        <Route path="/personnel/:id" element={<PersonnelDetails setAuth={setAuth} />} />
+        <Route
+          path="/personnel/:id"
+          element={<PersonnelDetails setAuth={setAuth} />}
+        />
         <Route
           path="/"
           element={
@@ -29,8 +33,13 @@ function App() {
             )
           }
         />
-        <Route path="/Medical" element={<Medical setAuth={setAuth} />} />
-        <Route path="/Training" element={<Training setAuth={setAuth}/>} />
+        <Route path="/medical" element={<Medical setAuth={setAuth} />} />
+        <Route path="/training" element={<Training setAuth={setAuth} />} />
+        <Route path="/training/:id" element={<Training setAuth={setAuth} />} />
+        <Route
+          path="/training_type/:id"
+          element={<TrainingType setAuth={setAuth} />}
+        />
       </Routes>
     </>
   );
