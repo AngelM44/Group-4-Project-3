@@ -12,6 +12,17 @@ app.use(cors());
 
 const tables = ["medical", "training_type", "training", "personnel"];
 
+app.get("/personnel", async (req, res) => {
+  knex("personnel")
+    .select("*")
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) =>
+      res.status(404).json({message: "The data you are looking for could not be found. Please try again"})
+    )
+});
+
 app.post("/personnel", async (req, res) => {
   try {
     const [{ id: medicalId }] = await knex("medical")
