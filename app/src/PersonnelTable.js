@@ -7,9 +7,22 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import { PieChart } from '@mui/x-charts';
 
-export default function PersonnelTable({ data }) {
+export default function PersonnelTable({data}) {
+  let dep = 0
+  let nodep = 0
+  data.map((person) => {
+    if (person['deployable'] == 'Yes')
+    {
+      dep += 1
+    }
+    else {
+      nodep += 1
+    }
+  })
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -53,5 +66,18 @@ export default function PersonnelTable({ data }) {
         </TableBody>
       </Table>
     </TableContainer>
+    <PieChart
+      series={[
+        {
+          data: [
+            { id: 0, value: dep, label: 'Ready', color: 'green' },
+            { id: 1, value: nodep, label: 'Not Ready', color: 'red' },
+          ],
+        },
+      ]}
+      width={500}
+      height={300}
+    />
+    </>
   );
 }
