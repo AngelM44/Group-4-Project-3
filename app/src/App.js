@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Medical from "./pages/Medical";
 import Training from "./pages/Training";
+import PersonnelDetails from "./pages/PersonnelDetails";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setAuth={setAuth} />} />
         <Route path="/signup" element={<Signup setAuth={setAuth} />} />
-        <Route path="/personnel/:id" element={<Home setAuth={setAuth} />} />
+        <Route path="/personnel/:id" element={<PersonnelDetails setAuth={setAuth} />} />
         <Route
           path="/"
           element={

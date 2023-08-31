@@ -2,16 +2,15 @@ import { Button, Typography, Container, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Logo from "../components/Logo";
 //////////////////////////////////////
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from '@mui/material/styles';
+import { Link, useParams } from "react-router-dom";
+import PersonnelDetailsTable from "./PersonnelDetailsTable";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import PersonnelTable from "../PersonnelTable";
 
 const colorPalette = {
   primaryDark: "light blue",
@@ -21,27 +20,26 @@ const colorPalette = {
   neutral: "white",
 };
 const StyledLink = styled(Link)({
-  textDecoration: "none",
+  textDecoration: 'none',
   color: colorPalette.neutral,
-  marginLeft: "1rem",
-  "&:hover": {
-    color: colorPalette.secondary,
-  },
+  marginLeft: '1rem',
+  '&:hover': {
+      color: colorPalette.secondary
+  }
 });
 const StyledAppBar = styled(AppBar)({
   backgroundColor: colorPalette.primary,
 });
 
-const Home = ({ setAuth }) => {
+const PersonnelDetails = ({ setAuth }) => {
   const [personnelData, setPersonnelData] = useState([]);
-  //const { id } = useParams();
+  const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/personnel/`)
+    fetch(`http://localhost:8080/personnel/${id}`)
       .then((res) => res.json())
       .then((data) => setPersonnelData(data))
       .catch(err => console.log(personnelData))
-  });
-
+  }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
@@ -78,9 +76,10 @@ const Home = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
-        <PersonnelTable data={personnelData}/>
+        <PersonnelDetailsTable data={personnelData}/>
     </Box>
   );
 };
 
-export default Home;
+
+export default PersonnelDetails;
