@@ -22,6 +22,20 @@ export default function MedicalTable({data}) {
 
   return (
     <>
+    <center>
+    <PieChart
+      series={[
+        {
+          data: [
+            { id: 0, value: green, label: 'Ready', color: 'green' },
+            { id: 1, value: red, label: 'Not Ready', color: 'red' },
+          ],
+        },
+      ]}
+      width={500}
+      height={300}
+    />
+    </center>
     <TableContainer component={Paper}>
       <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
         <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
@@ -51,18 +65,6 @@ export default function MedicalTable({data}) {
         </TableBody>
       </Table>
     </TableContainer>
-    <PieChart
-      series={[
-        {
-          data: [
-            { id: 0, value: green, label: 'Ready', color: 'green' },
-            { id: 1, value: red, label: 'Not Ready', color: 'red' },
-          ],
-        },
-      ]}
-      width={500}
-      height={300}
-    />
     </>
   );
 }

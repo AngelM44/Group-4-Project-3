@@ -71,6 +71,7 @@ const PersonnelDetails = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
+
       <PersonnelDetailsTable data={personnelData} />
     </Box>
   );
