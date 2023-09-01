@@ -51,6 +51,7 @@ export default function PersonnelTable({ data }) {
                   <Fab size="small" color="error" aria-label="minus">
                     <RemoveIcon />
                   </Fab>
+
                 </TableCell>
                 <TableCell align="center">
                 <Link to={`/personnel/${row['id']}`}>
