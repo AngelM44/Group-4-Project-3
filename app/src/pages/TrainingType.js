@@ -8,9 +8,9 @@ import TrainingTypeTable from "./TrainingTypeTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
-  primaryDark: "olive",
+  primaryDark: "#79955a",
   primary: "light blue",
-  secondary: "orange",
+  secondary: "#ffd54f",
   tertiary: "white",
   neutral: "white",
 };
@@ -51,7 +51,7 @@ const TrainingType = ({ setAuth }) => {
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "block" },
-              color: colorPalette.secondary,
+              color: colorPalette.neutral,
             }}
           >
             Deployment Readiness Tracker

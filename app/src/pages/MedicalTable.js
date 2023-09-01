@@ -19,6 +19,7 @@ export default function MedicalTable({data}) {
     else {red += 1}
   })
   console.log(data.data);
+
   return (
     <>
     <center>
@@ -36,27 +37,27 @@ export default function MedicalTable({data}) {
     />
     </center>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
+        <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Checkup Due By</TableCell>
-            <TableCell align="right">Immunization Due</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Checkup Due By</TableCell>
+            <TableCell align="center">Immunization Due</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
               key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0, px: 2, textAlign: 'center'  } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ border: 2, textAlign: 'center' }}>
                 <Link to={`/medical/${row.id}`}>{row.id}</Link>
               </TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row["checkup due by"]}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>{row.status}</TableCell>
+              <TableCell align="center" sx={{ border: 2}}>{row["checkup due by"]}</TableCell>
+              <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>
                 {row["immunization due"] ? "yes" : "no"}
               </TableCell>
             </TableRow>

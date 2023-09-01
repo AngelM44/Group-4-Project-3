@@ -15,9 +15,9 @@ import PersonnelTable from "../PersonnelTable";
 import { PieChart } from '@mui/x-charts';
 
 const colorPalette = {
-  primaryDark: "olive",
+  primaryDark: "#79955a",
   primary: "light blue",
-  secondary: "orange",
+  secondary: "#ffd54f",
   tertiary: "white",
   neutral: "white",
 };
@@ -67,7 +67,7 @@ const Home = ({ setAuth }) => {
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "block" },
-              color: colorPalette.primary,
+              color: colorPalette.neutral,
             }}
           >
             Deployment Readiness Tracker

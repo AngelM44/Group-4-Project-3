@@ -33,15 +33,15 @@ export default function PersonnelDetailsTable({data}) {
   />
     </center>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
+        <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Deployable</TableCell>
-            <TableCell align="right">ID</TableCell>
-            <TableCell align="right">DOD_number</TableCell>
-            <TableCell align="right">Medical_id</TableCell>
-            <TableCell align="right">Training_id</TableCell>
+            <TableCell align="center">Deployable</TableCell>
+            <TableCell align="center">ID</TableCell>
+            <TableCell align="center">DOD_number</TableCell>
+            <TableCell align="center">Medical_id</TableCell>
+            <TableCell align="center">Training_id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -53,11 +53,11 @@ export default function PersonnelDetailsTable({data}) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              {row['deployable'] === undefined ? null : <TableCell align="right">{row['deployable']}</TableCell>}
-              {row['id'] === undefined ? null : <TableCell align="right">{row['id']}</TableCell>}
-              {row['DOD_number'] === undefined ? null : <TableCell align="right">{row['DOD_number']}</TableCell>}
-              {row['medical_id'] === undefined ? null : <TableCell align="right">{row['medical_id']}</TableCell>}
-              {row['training_id'] === undefined ? null : <TableCell align="right">{row['training_id']}</TableCell>}
+              {row['deployable'] === undefined ? null : <TableCell align="center">{row['deployable']}</TableCell>}
+              {row['id'] === undefined ? null : <TableCell align="center">{row['id']}</TableCell>}
+              {row['DOD_number'] === undefined ? null : <TableCell align="center">{row['DOD_number']}</TableCell>}
+              {row['medical_id'] === undefined ? null : <TableCell align="center">{row['medical_id']}</TableCell>}
+              {row['training_id'] === undefined ? null : <TableCell align="center">{row['training_id']}</TableCell>}
             </TableRow>
           ))}
         </TableBody>

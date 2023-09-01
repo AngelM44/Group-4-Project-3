@@ -20,7 +20,6 @@ app.post("/personnel", async (req, res) => {
     const [{ id: trainingId }] = await knex("training")
       .insert({})
       .returning("id");
-
     await knex("personnel").insert({
       name: req.body.name,
       DOD_number: req.body.DOD_number,
