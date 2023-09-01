@@ -10,9 +10,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PieChart } from '@mui/x-charts';
 
+function deletePersonnel(id, navigate) {
+  fetch(`http://localhost:8080/personnel/${id}`, {
+    method: 'DELETE'
+  });
+  navigate("/");
+}
 export default function PersonnelTable({ data }) {
   let dep = 0
   let nodep = 0
@@ -24,6 +30,7 @@ export default function PersonnelTable({ data }) {
       nodep += 1
     }
   })
+  const navigate = useNavigate();
   return (
     <>
       <TableContainer component={Paper}>
@@ -48,16 +55,18 @@ export default function PersonnelTable({ data }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>
-                  <Fab size="small" color="error" aria-label="minus">
-                    <RemoveIcon />
-                  </Fab>
+                  <Link to="/">
+                    <Fab size="small" color="error" aria-label="minus" onClick={() => {deletePersonnel(row['id'], navigate)}}>
+                      <RemoveIcon />
+                    </Fab>
+                  </Link>
 
                 </TableCell>
                 <TableCell align="center">
-                <Link to={`/personnel/${row['id']}`}>
-                  {row['name']}
-                </Link>
-              </TableCell>
+                  <Link to={`/personnel/${row['id']}`}>
+                    {row['name']}
+                  </Link>
+                </TableCell>
                 {row["deployable"] === undefined ? null : (
                   <TableCell align="center">{row["deployable"]}</TableCell>
                 )}
