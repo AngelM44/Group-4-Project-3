@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PersonnelTable from "../PersonnelTable";
+import { PieChart } from '@mui/x-charts';
 
 const colorPalette = {
   primaryDark: "olive",
@@ -41,8 +42,16 @@ const Home = ({ setAuth }) => {
       .then((data) => setPersonnelData(data))
       .catch(err => console.log(personnelData))
   });
-
+  let ready = 0
+  let notready = 0
+  console.log([personnelData])
+  personnelData.map((person) => {
+    if(person.deployable == 'Yes')
+      ready += 1
+    else {notready += 1}
+  })
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
         <Toolbar>
@@ -78,8 +87,23 @@ const Home = ({ setAuth }) => {
           </StyledLink>
         </Toolbar>
       </StyledAppBar>
+      <center>
+    <PieChart
+    series={[
+      {
+        data: [
+          { id: 0, value: ready, label: 'Ready', color: 'green' },
+          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
+        ],
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+    </center>
         <PersonnelTable data={personnelData}/>
     </Box>
+    </>
   );
 };
 
