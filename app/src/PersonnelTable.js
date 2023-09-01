@@ -34,8 +34,8 @@ export default function PersonnelTable({ data }) {
   return (
     <>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+        <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
+          <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
             <TableRow>
               <TableCell>
                 <AccountCircleIcon fontSize="large" />
@@ -52,7 +52,7 @@ export default function PersonnelTable({ data }) {
             {data.map((row) => (
               <TableRow
                 key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 2 } }}
               >
                 <TableCell>
                   <Link to="/">
@@ -67,20 +67,21 @@ export default function PersonnelTable({ data }) {
                     {row['name']}
                   </Link>
                 </TableCell>
+
                 {row["deployable"] === undefined ? null : (
-                  <TableCell align="center">{row["deployable"]}</TableCell>
+                  <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>{row["deployable"]}</TableCell>
                 )}
                 {row["id"] === undefined ? null : (
-                  <TableCell align="center">{row["id"]}</TableCell>
+                  <TableCell align="center" sx={{ border: 2}}>{row["id"]}</TableCell>
                 )}
                 {row["DOD_number"] === undefined ? null : (
-                  <TableCell align="center">{row["DOD_number"]}</TableCell>
+                  <TableCell align="center" sx={{ border: 2}}>{row["DOD_number"]}</TableCell>
                 )}
                 {row["medical_id"] === undefined ? null : (
-                  <TableCell align="center">{row["medical_id"]}</TableCell>
+                  <TableCell align="center" sx={{ border: 2}}>{row["medical_id"]}</TableCell>
                 )}
                 {row["training_id"] === undefined ? null : (
-                  <TableCell align="center">
+                  <TableCell align="center" sx={{ border: 2}}>
                     <Link to={`/training/${row["training_id"]}`}>
                       {row["training_id"]}
                     </Link>

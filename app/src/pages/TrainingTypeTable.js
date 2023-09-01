@@ -10,25 +10,25 @@ import Paper from "@mui/material/Paper";
 export default function TrainingTypeTable({ data }) {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
+        <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell align="center">ID</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Description</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
               key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 2, textAlign: 'center' } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" align="center">
                 {row.id}
               </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row["description"]}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{row["description"]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

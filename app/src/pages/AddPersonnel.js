@@ -71,7 +71,7 @@ export default function AddPersonnel() {
             <StyledAppBar position="static">
                 <Toolbar>
                     <img
-                        src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
+                        src="https://pnghq.com/wp-content/uploads/the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
                         alt="logo"
                         style={{ height: 45, marginRight: 10 }}
                     />

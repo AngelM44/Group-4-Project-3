@@ -21,13 +21,13 @@ export default function TrainingTable({ data }) {
   return (
     <>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
+        <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
             <TableCell>ID</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Training Type ID</TableCell>
-            <TableCell align="right">Date Completed</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Training Type ID</TableCell>
+            <TableCell align="center">Date Completed</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -36,16 +36,16 @@ export default function TrainingTable({ data }) {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ border: 2}}>
                 {row.id}
               </TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>{row.status}</TableCell>
+              <TableCell align="center" sx={{ border: 2}}>
                 <Link to={`/training_type/${row["training_type_id"]}`}>
                   {row["training_type_id"]}
                 </Link>
               </TableCell>
-              <TableCell align="right">{row["date_completed"]}</TableCell>
+              <TableCell align="center" sx={{ border: 2}}>{row["date_completed"]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
