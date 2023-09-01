@@ -10,9 +10,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PieChart } from '@mui/x-charts';
 
+function deletePersonnel(id, navigate) {
+  fetch(`http://localhost:8080/personnel/${id}`, {
+    method: 'DELETE'
+  });
+  navigate("/");
+}
 export default function PersonnelTable({ data }) {
   let dep = 0
   let nodep = 0
@@ -24,6 +30,7 @@ export default function PersonnelTable({ data }) {
       nodep += 1
     }
   })
+  const navigate = useNavigate();
   return (
     <>
       <TableContainer component={Paper}>
@@ -47,17 +54,20 @@ export default function PersonnelTable({ data }) {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 2 } }}
               >
-                <TableCell sx={{ border: 2}}>
-                  <Fab size="small" color="error" aria-label="minus">
-                    <RemoveIcon />
-                  </Fab>
+                <TableCell>
+                  <Link to="/">
+                    <Fab size="small" color="error" aria-label="minus" onClick={() => {deletePersonnel(row['id'], navigate)}}>
+                      <RemoveIcon />
+                    </Fab>
+                  </Link>
 
                 </TableCell>
-                <TableCell align="center" sx={{ border: 2}}>
-                <Link to={`/personnel/${row['id']}`}>
-                  {row['name']}
-                </Link>
-              </TableCell>
+                <TableCell align="center">
+                  <Link to={`/personnel/${row['id']}`}>
+                    {row['name']}
+                  </Link>
+                </TableCell>
+
                 {row["deployable"] === undefined ? null : (
                   <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>{row["deployable"]}</TableCell>
                 )}
