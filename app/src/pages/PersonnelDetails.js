@@ -8,22 +8,22 @@ import PersonnelDetailsTable from "./PersonnelDetailsTable";
 import { useEffect, useState } from "react";
 
 const colorPalette = {
-  primaryDark: "light blue",
+  primaryDark: "olive",
   primary: "light blue",
-  secondary: "white",
+  secondary: "orange",
   tertiary: "white",
   neutral: "white",
 };
 const StyledLink = styled(Link)({
-  textDecoration: 'none',
-  color: colorPalette.neutral,
-  marginLeft: '1rem',
-  '&:hover': {
-      color: colorPalette.secondary
-  }
+  textDecoration: "none",
+  color: colorPalette.tertiary,
+  marginLeft: "1rem",
+  "&:hover": {
+    color: colorPalette.secondary,
+  },
 });
 const StyledAppBar = styled(AppBar)({
-  backgroundColor: colorPalette.primary,
+  backgroundColor: colorPalette.primaryDark,
 });
 
 const PersonnelDetails = ({ setAuth }) => {

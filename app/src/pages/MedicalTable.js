@@ -1,4 +1,3 @@
-export default function MedicalTable({ data }) {
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { PieChart } from '@mui/x-charts';
-  import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MedicalTable({data}) {
   let green = 0

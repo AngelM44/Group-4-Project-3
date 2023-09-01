@@ -52,7 +52,9 @@ export default function PersonnelTable({data}) {
                 <TableCell align="right">{row["DOD_number"]}</TableCell>
               )}
               {row["medical_id"] === undefined ? null : (
-                <TableCell align="right">{row["medical_id"]}</TableCell>
+                <TableCell align="right"><Link to={`/medical/${row["medical_id"]}`}>
+                {row["medical_id"]}
+              </Link></TableCell>
               )}
               {row["training_id"] === undefined ? null : (
                 <TableCell align="right">
