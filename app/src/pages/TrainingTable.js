@@ -20,6 +20,20 @@ export default function TrainingTable({ data }) {
   })
   return (
     <>
+    <center>
+    <PieChart
+    series={[
+      {
+        data: [
+          { id: 0, value: ready, label: 'Ready', color: 'green' },
+          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
+        ],
+      },
+    ]}
+    width={500}
+    height={300}
+  />
+    </center>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -51,18 +65,6 @@ export default function TrainingTable({ data }) {
         </TableBody>
       </Table>
     </TableContainer>
-    <PieChart
-    series={[
-      {
-        data: [
-          { id: 0, value: ready, label: 'Ready', color: 'green' },
-          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
-        ],
-      },
-    ]}
-    width={500}
-    height={300}
-  />
   </>
   );
 }

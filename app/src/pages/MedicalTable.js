@@ -21,6 +21,20 @@ export default function MedicalTable({data}) {
   console.log(data.data);
   return (
     <>
+    <center>
+    <PieChart
+      series={[
+        {
+          data: [
+            { id: 0, value: green, label: 'Ready', color: 'green' },
+            { id: 1, value: red, label: 'Not Ready', color: 'red' },
+          ],
+        },
+      ]}
+      width={500}
+      height={300}
+    />
+    </center>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -50,18 +64,6 @@ export default function MedicalTable({data}) {
         </TableBody>
       </Table>
     </TableContainer>
-    <PieChart
-      series={[
-        {
-          data: [
-            { id: 0, value: green, label: 'Ready', color: 'green' },
-            { id: 1, value: red, label: 'Not Ready', color: 'red' },
-          ],
-        },
-      ]}
-      width={500}
-      height={300}
-    />
     </>
   );
 }
