@@ -22,53 +22,13 @@ export default function MedicalTable({data}) {
 
   return (
     <>
-<<<<<<< HEAD
-    <center style={{ backgroundColor: "#aed581" }}>
-    <PieChart
-      series={[
-        {
-          data: [
-            { id: 0, value: green, label: 'Ready', color: 'green' },
-            { id: 1, value: red, label: 'Not Ready', color: 'red' },
-          ],
-        },
-      ]}
-      width={500}
-      height={300}
-    />
-    </center>
-    <TableContainer component={Paper}>
-      <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
-        <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Checkup Due By</TableCell>
-            <TableCell align="center">Immunization Due</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0, px: 2, textAlign: 'center'  } }}
-            >
-              <TableCell component="th" scope="row" sx={{ border: 2, textAlign: 'center' }}>
-                <Link to={`/medical/${row.id}`}>{row.id}</Link>
-              </TableCell>
-              <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>{row.status}</TableCell>
-              <TableCell align="center" sx={{ border: 2}}>{row["checkup due by"]}</TableCell>
-              <TableCell align="center" sx={{ border: 2, textTransform: 'uppercase'}}>
-                {row["immunization due"] ? "yes" : "no"}
-              </TableCell>
-=======
-      <center>
+      <center style={{ backgroundColor: "#aed581" }}>
         <PieChart
           series={[
             {
               data: [
                 { id: 0, value: green, label: "Ready", color: "green" },
-                { id: 1, value: red, label: "Not Ready", color: "red" },
+                { id: 1, value: red, label: "Not Ready", color: "#c62828" },
               ],
             },
           ]}
@@ -94,7 +54,6 @@ export default function MedicalTable({data}) {
               <TableCell align="center">Status</TableCell>
               <TableCell align="center">Checkup Due By</TableCell>
               <TableCell align="center">Immunization Due</TableCell>
->>>>>>> 03522b41c4a18be5d66c3a076a509b668cc383be
             </TableRow>
           </TableHead>
           <TableBody>
