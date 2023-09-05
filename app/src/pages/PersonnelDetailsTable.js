@@ -12,7 +12,7 @@ export default function PersonnelDetailsTable({data}) {
   let ready = 0
   let notready = 0
   data.map((person) => {
-    if(person.status == 'green')
+    if(person.status === 'Yes')
       ready += 1
     else {notready += 1}
   })
@@ -23,8 +23,8 @@ export default function PersonnelDetailsTable({data}) {
     series={[
       {
         data: [
-          { id: 0, value: ready, label: 'Ready', color: 'green' },
-          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
+          { id: 0, value: ready, label: 'Deployable', color: 'green' },
+          { id: 1, value: notready, label: 'Not Deployable', color: 'red' },
         ],
       },
     ]}
