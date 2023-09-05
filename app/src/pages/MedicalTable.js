@@ -22,13 +22,13 @@ export default function MedicalTable({data}) {
 
   return (
     <>
-      <center>
+      <center style={{ backgroundColor: "#aed581" }}>
         <PieChart
           series={[
             {
               data: [
                 { id: 0, value: green, label: "Ready", color: "green" },
-                { id: 1, value: red, label: "Not Ready", color: "red" },
+                { id: 1, value: red, label: "Not Ready", color: "#c62828" },
               ],
             },
           ]}
