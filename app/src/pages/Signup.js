@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 //////////////////////////////////
 const RootStyle = styled("div")({
-  background: "rgb(249, 250, 251)",
+  background: "#aed581",
   height: "100vh",
   display: "grid",
   placeItems: "center",
