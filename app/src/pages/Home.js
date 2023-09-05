@@ -41,7 +41,7 @@ const Home = ({ setAuth }) => {
       .then((res) => res.json())
       .then((data) => setPersonnelData(data))
       .catch(err => console.log(err))
-  }, []);
+  }, [personnelData]);
   let ready = 0
   let notready = 0
   console.log([personnelData])

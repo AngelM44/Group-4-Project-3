@@ -78,10 +78,18 @@ app.get("/medical/:idOrName", async (req, res) => {
 app.post("/personnel", async (req, res) => {
   try {
     const [{ id: medicalId }] = await knex("medical")
-      .insert({})
+      .insert({
+        status: req.body.medicalStatus,
+        "checkup due by": req.body.checkup_due_by,
+        "immunization due": req.body.immunization_due
+      })
       .returning("id");
     const [{ id: trainingId }] = await knex("training")
-      .insert({})
+      .insert({
+        status: req.body.trainingStatus,
+        training_type_id: req.body.training_type_id,
+        date_completed: req.body.date_completed
+      })
       .returning("id");
     await knex("personnel").insert({
       name: req.body.name,
