@@ -40,8 +40,8 @@ const Home = ({ setAuth }) => {
     fetch(`http://localhost:8080/personnel/`)
       .then((res) => res.json())
       .then((data) => setPersonnelData(data))
-      .catch(err => console.log(personnelData))
-  });
+      .catch(err => console.log(err))
+  }, []);
   let ready = 0
   let notready = 0
   console.log([personnelData])

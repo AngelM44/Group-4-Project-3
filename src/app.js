@@ -12,6 +12,69 @@ app.use(cors());
 
 const tables = ["medical", "training_type", "training", "personnel"];
 
+app.get("/training", async (req, res) => {
+  try {
+    const data = await knex("training")
+      .join("personnel", "training.id", "=", "personnel.training_id")
+      .select("training.*", "personnel.name");
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Data not found" });
+  }
+});
+
+app.get("/training/:idOrName", async (req, res) => {
+  try {
+    let query = knex("training")
+      .join("personnel", "training.id", "=", "personnel.training_id")
+      .select("training.*", "personnel.name");
+
+    if (isNaN(req.params.idOrName)) {
+      query.where("personnel.name", "ilike", `%${req.params.idOrName}%`);
+    } else {
+      query.where("training.id", req.params.idOrName);
+    }
+
+    const data = await query;
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Data not found" });
+  }
+});
+
+app.get("/medical", async (req, res) => {
+  try {
+    const data = await knex("medical")
+      .join("personnel", "medical.id", "=", "personnel.medical_id")
+      .select("medical.*", "personnel.name");
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Data not found" });
+  }
+});
+
+app.get("/medical/:idOrName", async (req, res) => {
+  try {
+    let query = knex("medical")
+      .join("personnel", "medical.id", "=", "personnel.medical_id")
+      .select("medical.*", "personnel.name");
+
+    if (isNaN(req.params.idOrName)) {
+      query.where("personnel.name", "ilike", `%${req.params.idOrName}%`);
+    } else {
+      query.where("medical.id", req.params.idOrName);
+    }
+
+    const data = await query;
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Data not found" });
+  }
+});
 app.post("/personnel", async (req, res) => {
   try {
     const [{ id: medicalId }] = await knex("medical")
