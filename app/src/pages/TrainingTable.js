@@ -14,20 +14,20 @@ export default function TrainingTable({ data }) {
   let ready = 0;
   let notready = 0;
   data.map((person) => {
-    if (person.status === "Yes") ready += 1;
+    if (person.status === "green") ready += 1;
     else {
       notready += 1;
     }
   });
   return (
     <>
-      <center>
+      <center style={{ backgroundColor: "#aed581" }}>
         <PieChart
           series={[
             {
               data: [
                 { id: 0, value: ready, label: "Ready", color: "green" },
-                { id: 1, value: notready, label: "Not Ready", color: "red" },
+                { id: 1, value: notready, label: "Not Ready", color: "#c62828" },
               ],
             },
           ]}
@@ -48,20 +48,20 @@ export default function TrainingTable({ data }) {
             sx={{ backgroundColor: "#899d73", border: 4, textAlign: "center" }}
           >
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="center"> Name</TableCell>
+              <TableCell sx={{ border: 2 }}>ID</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}> Name</TableCell>
 
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Training Type ID</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Status</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Training Type ID</TableCell>
 
-              <TableCell align="center">Date Completed</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Date Completed</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row) => (
               <TableRow
                 key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 2 } }}
               >
                 <TableCell component="th" scope="row" sx={{ border: 2 }}>
                   {row.id}

@@ -65,7 +65,7 @@ export default function PersonnelTable({ data }) {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 2 } }}
               >
-                <TableCell>
+                <TableCell sx={{ border: 2 }}>
                   <Link to="/">
                     <Fab size="small" color="error" aria-label="minus" onClick={() => {deletePersonnel(row['id'], navigate)}}>
                       <RemoveIcon />
@@ -73,7 +73,7 @@ export default function PersonnelTable({ data }) {
                   </Link>
 
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="center" sx={{ border: 2 }}>
                   <Link to={`/personnel/${row['id']}`}>
                     {row['name']}
                   </Link>
