@@ -8,24 +8,25 @@ import { Link, useNavigate } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 import Name from "faker/lib/name";
 
+
 const colorPalette = {
-    primaryDark: "light blue",
+    primaryDark: "#79955a",
     primary: "light blue",
-    secondary: "white",
+    secondary: "#ffd54f",
     tertiary: "white",
     neutral: "white",
-};
-const StyledLink = styled(Link)({
+  };
+  const StyledLink = styled(Link)({
     textDecoration: "none",
-    color: colorPalette.neutral,
+    color: colorPalette.tertiary,
     marginLeft: "1rem",
     "&:hover": {
-        color: colorPalette.secondary,
+      color: colorPalette.secondary,
     },
-});
-const StyledAppBar = styled(AppBar)({
-    backgroundColor: colorPalette.primary,
-});
+  });
+  const StyledAppBar = styled(AppBar)({
+    backgroundColor: colorPalette.primaryDark,
+  });
 
 export default function AddPersonnel() {
     const navigate = useNavigate();
@@ -90,7 +91,7 @@ export default function AddPersonnel() {
             <StyledAppBar position="static">
                 <Toolbar>
                     <img
-                        src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
+                        src="https://pnghq.com/wp-content/uploads/the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
                         alt="logo"
                         style={{ height: 45, marginRight: 10 }}
                     />
@@ -101,7 +102,7 @@ export default function AddPersonnel() {
                         sx={{
                             flexGrow: 1,
                             display: { xs: "none", sm: "block" },
-                            color: colorPalette.secondary,
+                            color: colorPalette.tertiary,
                         }}
                     >
                         Deployment Readiness Tracker
@@ -129,6 +130,7 @@ export default function AddPersonnel() {
                         flexDirection: 'row',
                         alignItems: 'center',
                         '& .MuiTextField-root': { width: '25ch' },
+                        color: colorPalette.secondary,
                     }}
                     onSubmit={handleSubmit}
                 >
@@ -149,9 +151,9 @@ export default function AddPersonnel() {
                                         alignItems: 'center',
                                         '& .MuiTextField-root': { width: '25ch' },
                                     }}>
-                                    <TextField name="name" label={'Name'} id="AddFormName" color="primary" margin="normal" focused />
-                                    <TextField name="DOD_number" label={'DOD Number'} id="AddFormDOD_number" color="primary" margin="normal" focused />
-                                    <TextField name="deployable" label={'Deployable'} id="AddFormDeployable" color="primary" margin="normal" focused />
+                                    <TextField name="name" label={'Name'} id="AddFormName" color="success" margin="normal" focused />
+                                    <TextField name="DOD_number" label={'DOD Number'} id="AddFormDOD_number" color="success" margin="normal" focused />
+                                    <TextField name="deployable" label={'Deployable'} id="AddFormDeployable" color="success" margin="normal" focused />
                                 </Box>
                             </Grid>
                             <Grid item xs={3}>
@@ -170,9 +172,9 @@ export default function AddPersonnel() {
                                         alignItems: 'center',
                                         '& .MuiTextField-root': { width: '25ch' },
                                     }}>
-                                    <TextField name="medicalStatus" label={'Status'} id="AddFormMedicalStatus" color="primary" margin="normal" focused />
-                                    <TextField name="checkup_due_by" label={'Checkup Due'} id="AddFormCheckup" color="primary" margin="normal" focused />
-                                    <TextField name="immunization_due" label={'Immunization'} id="AddFormImmunization" color="primary" margin="normal" focused />
+                                    <TextField name="medicalStatus" label={'Status'} id="AddFormMedicalStatus" color="success" margin="normal" focused />
+                                    <TextField name="checkup_due_by" label={'Checkup Due'} id="AddFormCheckup" color="success" margin="normal" focused />
+                                    <TextField name="immunization_due" label={'Immunization'} id="AddFormImmunization" color="success" margin="normal" focused />
                                     <Box
                                         sx={{
                                             padding: '25px'
@@ -181,6 +183,7 @@ export default function AddPersonnel() {
                                             variant="contained"
                                             margin="normal"
                                             type="submit"
+                                            color="success"
                                         >Add Personnel</Button>
                                     </Box>
                                 </Box>
@@ -201,9 +204,9 @@ export default function AddPersonnel() {
                                         alignItems: 'center',
                                         '& .MuiTextField-root': { width: '25ch' },
                                     }}>
-                                    <TextField name="trainingStatus" label={'Status'} id="AddFormTrainingStatus" color="primary" margin="normal" focused />
-                                    <TextField name="training_type_id" label={'Training Type'} id="AddFormTrainingType" color="primary" margin="normal" focused />
-                                    <TextField name="date_completed" label={'Date Completed'} id="AddFormDateCompleted" color="primary" margin="normal" focused />
+                                    <TextField name="trainingStatus" label={'Status'} id="AddFormTrainingStatus" color="success" margin="normal" focused />
+                                    <TextField name="training_type_id" label={'Training Type'} id="AddFormTrainingType" color="success" margin="normal" focused />
+                                    <TextField name="date_completed" label={'Date Completed'} id="AddFormDateCompleted" color="success" margin="normal" focused />
                                 </Box>
                             </Grid>
                         </Grid>
