@@ -111,7 +111,6 @@ export default function PersonnelTable({ data }) {
               )}
               {row["medical_id"] === undefined ? null : (
                 <TableCell align="center" sx={{ border: 2 }}>
-                  {" "}
                   <Link to={`/medical/${row["medical_id"]}`}>
                     {row["medical_id"]}
                   </Link>
