@@ -48,7 +48,7 @@ const Home = ({ setAuth }) => {
   console.log([personnelData]);
 =======
       .catch(err => console.log(err))
-  }, []);
+  }, [personnelData]);
   let ready = 0
   let notready = 0
   console.log([personnelData])

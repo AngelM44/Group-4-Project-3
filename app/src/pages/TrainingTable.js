@@ -68,8 +68,8 @@ export default function TrainingTable({ data }) {
           series={[
             {
               data: [
-                { id: 0, value: ready, label: "Deployable", color: "green" },
-                { id: 1, value: notready, label: "Not Deployable", color: "red" },
+                { id: 0, value: ready, label: "Ready", color: "green" },
+                { id: 1, value: notready, label: "Not Ready", color: "red" },
               ],
             },
           ]}

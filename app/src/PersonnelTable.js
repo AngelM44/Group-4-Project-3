@@ -16,8 +16,20 @@ import { PieChart } from '@mui/x-charts';
 function deletePersonnel(id, navigate) {
   fetch(`http://localhost:8080/personnel/${id}`, {
     method: 'DELETE'
-  });
-  navigate("/");
+  })
+  .then(response => {
+    fetch(`http://localhost:8080/training/${id}`, {
+      method: 'DELETE'
+    })
+  })
+  .then (response => {
+      fetch(`http://localhost:8080/medical/${id}`, {
+    method: 'DELETE'
+    })
+  })
+  .then(response => {
+    navigate("/");
+})
 }
 export default function PersonnelTable({ data }) {
   let dep = 0

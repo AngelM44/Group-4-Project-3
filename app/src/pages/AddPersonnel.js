@@ -5,6 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { styled } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
+import Grid from '@mui/material/Grid';
 import Name from "faker/lib/name";
 
 const colorPalette = {
@@ -32,46 +33,58 @@ export default function AddPersonnel() {
     const handleSubmit = (event) => {
         event.preventDefault();
         var formData = new FormData(event.currentTarget) // Use formData.get('name') to get the value from the "Name" text field.
+        //isNaN(Number(formData.get('training_type_id'))) ? console.log(true) : console.log(false);
         let newPersonnel = {
             name: (formData.get('name') === null ? "Christopher Hesser" :
-            formData.get('name').toString().length === 0 ? "Christopher Hesser" : formData.get('name')),
-            DOD_number: formData.get('DOD_number') === null ? 1234567890 : 
-                        formData.get('DOD_number') > 2000000000 ? 1234567890 : 
-                        isNaN(formData.get('DOD_number')) ? 1234567890 : 
+                formData.get('name').toString().length === 0 ? "Christopher Hesser" : formData.get('name')),
+            DOD_number: formData.get('DOD_number') === null ? 1234567890 :
+                formData.get('DOD_number') > 2000000000 ? 1234567890 :
+                    isNaN(formData.get('DOD_number')) ? 1234567890 :
                         formData.get('DOD_number') instanceof String ? 1234567890 :
-                        formData.get('DOD_number') === undefined ? 1234567890 :
-                        formData.get('DOD_number').toString().length === 0 ? 1234567890 : formData.get('DOD_number'),
+                            formData.get('DOD_number') === undefined ? 1234567890 :
+                                formData.get('DOD_number').toString().length === 0 ? 1234567890 : formData.get('DOD_number'),
             deployable: (formData.get('deployable') === "Yes" ? "Yes" : "No"),
-            medical_id: formData.get('medical_id') || "0",
-            training_id: formData.get('training_id') || "0"
-          };
-          fetch("http://localhost:8080/personnel/", {
+
+            medicalStatus: (formData.get('medicalStatus') === "green" ? "green" : "red"),
+            checkup_due_by: new Date("1999-12-31"), // (formData.get('checkup_due_by') instanceof Date ? formData.get('checkup_due_by') : new Date("1999-12-31")),
+            immunization_due: (formData.get('immunization_due') === true ? true : false),
+            trainingStatus: (formData.get('trainingStatus') === "green" ? "green" : "red"),
+            training_type_id: (isNaN(Number(formData.get('training_type_id'))) ? Math.floor(Math.random() * 21) :
+            Number(formData.get('training_type_id')) < 1 ? Math.floor(Math.random() * 21) :
+            Number(formData.get('training_type_id')) > 20 ? Math.floor(Math.random() * 21) :
+            formData.get('training_type_id').toString().length === 0 ? Math.floor(Math.random() * 21) : Number(formData.get('training_type_id'))),
+            date_completed: new Date("1999-12-31")// (formData.get('date_completed') instanceof Date ? formData.get('date_completed') : new Date("1999-12-31"))
+        };
+        fetch("http://localhost:8080/personnel/", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(newPersonnel)
-          })
+        })
             .then((rawResponse) => {
-              if (!rawResponse.ok) {
-                throw new Error(
-                  `code: ${rawResponse.status}, status text: ${rawResponse.statusText}`
-                );
-              }
-              return rawResponse.json();
+                if (!rawResponse.ok) {
+                    throw new Error(
+                        `code: ${rawResponse.status}, status text: ${rawResponse.statusText}`
+                    );
+                }
+                return rawResponse.json();
             })
             .then((jsonifiedResponse) =>
-              console.log("Jsonified data: ", jsonifiedResponse)
+                console.log("Jsonified data: ", jsonifiedResponse)
             )
+            .then(response => {
+                navigate("/");
+            })
             .catch((error) => console.log(error));
-        navigate("/");
+
     };
     return (
         <Box sx={{ flexGrow: 1 }}>
             <StyledAppBar position="static">
                 <Toolbar>
                     <img
-                        src="https://pnghq.com/wp-content/uploads/the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
+                        src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
                         alt="logo"
                         style={{ height: 45, marginRight: 10 }}
                     />
@@ -104,38 +117,90 @@ export default function AddPersonnel() {
             </StyledAppBar>
             <div>
                 <Box
-                    sx={{
-                        height: 50
-                    }}>
-                    <center>
-                        <h2>Add New Personnel</h2>
-                    </center>
-                </Box>
-                <Box
                     component="form"
                     sx={{
                         display: 'flex',
-                        flexDirection: 'column',
+                        flexDirection: 'row',
                         alignItems: 'center',
                         '& .MuiTextField-root': { width: '25ch' },
                     }}
                     onSubmit={handleSubmit}
                 >
-                    <TextField name="name" label={'Name'} id="AddFormName" color="primary" margin="normal" focused />
-                    <TextField name="DOD_number" label={'DOD Number'} id="AddFormDOD_number" color="primary" margin="normal" focused />
-                    <TextField name="medical_id" label={'Medical ID'} id="AddFormMedical" color="primary" margin="normal" focused />
-                    <TextField name="training_id" label={'Training ID'} id="AddFormTraining" color="primary" margin="normal" focused />
-                    <TextField name="deployable" label={'Deployable'} id="AddFormDeployable" color="primary" margin="normal" focused />
-                        <Box
-                            sx={{
-                                padding: '25px'
-                            }}>
-                            <Button
-                                variant="contained"
-                                margin="normal"
-                                type="submit"
-                            >Add Personnel</Button>
-                        </Box>
+                    <Grid container spacing={1}>
+                            <Grid item xs={3}>
+                                <Box
+                                    sx={{
+                                        height: 50
+                                    }}>
+                                    <center>
+                                        <h2>Personnel Information</h2>
+                                    </center>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        '& .MuiTextField-root': { width: '25ch' },
+                                    }}>
+                                    <TextField name="name" label={'Name'} id="AddFormName" color="primary" margin="normal" focused />
+                                    <TextField name="DOD_number" label={'DOD Number'} id="AddFormDOD_number" color="primary" margin="normal" focused />
+                                    <TextField name="deployable" label={'Deployable'} id="AddFormDeployable" color="primary" margin="normal" focused />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Box
+                                    sx={{
+                                        height: 50
+                                    }}>
+                                    <center>
+                                        <h2>Medical Information</h2>
+                                    </center>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        '& .MuiTextField-root': { width: '25ch' },
+                                    }}>
+                                    <TextField name="medicalStatus" label={'Status'} id="AddFormMedicalStatus" color="primary" margin="normal" focused />
+                                    <TextField name="checkup_due_by" label={'Checkup Due'} id="AddFormCheckup" color="primary" margin="normal" focused />
+                                    <TextField name="immunization_due" label={'Immunization'} id="AddFormImmunization" color="primary" margin="normal" focused />
+                                    <Box
+                                        sx={{
+                                            padding: '25px'
+                                        }}>
+                                        <Button
+                                            variant="contained"
+                                            margin="normal"
+                                            type="submit"
+                                        >Add Personnel</Button>
+                                    </Box>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Box
+                                    sx={{
+                                        height: 50
+                                    }}>
+                                    <center>
+                                        <h2>Training Information</h2>
+                                    </center>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        '& .MuiTextField-root': { width: '25ch' },
+                                    }}>
+                                    <TextField name="trainingStatus" label={'Status'} id="AddFormTrainingStatus" color="primary" margin="normal" focused />
+                                    <TextField name="training_type_id" label={'Training Type'} id="AddFormTrainingType" color="primary" margin="normal" focused />
+                                    <TextField name="date_completed" label={'Date Completed'} id="AddFormDateCompleted" color="primary" margin="normal" focused />
+                                </Box>
+                            </Grid>
+                        </Grid>
                 </Box>
             </div>
         </Box>
