@@ -72,14 +72,14 @@
 
         Navbar
         Deployment Readiness Pie Chart
-        Deployment Readiness table: All personnel and a "-" icon next to each personnel. Also contains an insert icon as its final value.
+        Deployment Readiness table: All personnel and a "-" icon next to each personnel. Also contains an insert icon as its final value
 
             Insert: The blue "+" icon at the bottom of the table navigates the user to the "Add Personnel form"
             Delete: The red "-" icon deletes the personnel to the right of the icon. Personnel information is also removed from
                 training and medical pages
-            Name Column: The name column navigates the user to a Deployment Readiness table of the specific personnel.
-            Medical_id column: The Medical_id column navigates the user to the medical page of the specific personnel.
-            Training_id column: The Training_id column navigates the user to the training page of the specific personnel.
+            Name Column: The name column navigates the user to a Deployment Readiness table of the specific personnel. Presented in card format
+            Medical_id column: The Medical_id column navigates the user to the medical page of the specific personnel
+            Training_id column: The Training_id column navigates the user to the training page of the specific personnel
 
     Training Page: The training page displays the following features:
 
@@ -95,22 +95,22 @@
     
     Add Personnel form:
 
-        The "Add Personnel" form allows the user to add a personnel to the Deployment Readiness Tracker table and medical and training tables.
+        The "Add Personnel" form allows the user to add a personnel to the Deployment Readiness Tracker table and medical and training tables
         
-        The form has the follwoing fields:
+        The form has the following fields:
             Name: string
-            DOD Number: string
+            DOD Number: int
             Deployable: Yes/No
             Status: green/red
             Checkup Due By: date
             Immunization: true/false
             Status: green/red
-            Training Type: number between 1-20
+            Training Type: int between 1-20
             Date Completed: date
         
-        The "ADD PERSONNEL" button submits data to the API in order to add the data to the database.
+        The "ADD PERSONNEL" button submits data to the API in order to add the data to the database
     
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
