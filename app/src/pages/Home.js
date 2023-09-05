@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PersonnelTable from "../PersonnelTable";
-import { PieChart } from '@mui/x-charts';
+import { PieChart } from "@mui/x-charts";
 
 const colorPalette = {
   primaryDark: "#79955a",
@@ -40,69 +40,71 @@ const Home = ({ setAuth }) => {
     fetch(`http://localhost:8080/personnel/`)
       .then((res) => res.json())
       .then((data) => setPersonnelData(data))
-      .catch(err => console.log(personnelData))
+      .catch((err) => console.log(personnelData));
   });
-  let ready = 0
-  let notready = 0
-  console.log([personnelData])
+  let ready = 0;
+  let notready = 0;
+  console.log([personnelData]);
   personnelData.map((person) => {
-    if(person.deployable == 'Yes')
-      ready += 1
-    else {notready += 1}
-  })
+    if (person.deployable == "Yes") ready += 1;
+    else {
+      notready += 1;
+    }
+  });
   return (
     <>
-    <Box sx={{ flexGrow: 1 }}>
-      <StyledAppBar position="static">
-        <Toolbar>
-          <img
-            src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
-            alt="logo"
-            style={{ height: 45, marginRight: 10 }}
+      <Box sx={{ flexGrow: 1 }}>
+        <StyledAppBar position="static">
+          <Toolbar>
+            <img
+              src="the-mandalorian-helmet-png-image-free-transparent-download-high-quality-images-768x1126.png"
+              alt="logo"
+              style={{ height: 45, marginRight: 10 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "block" },
+                color: colorPalette.neutral,
+              }}
+            >
+              Deployment Readiness Tracker
+            </Typography>
+            {/* Navigation Links */}
+            <StyledLink variant="h6" component="div" to="/">
+              Home
+            </StyledLink>
+            <StyledLink variant="h6" component="div" to="/Training">
+              Training
+            </StyledLink>
+            <StyledLink variant="h6" component="div" to="/Medical">
+              Medical
+            </StyledLink>
+            <StyledLink variant="h6" component="div" to="/login">
+              Logout
+            </StyledLink>
+          </Toolbar>
+        </StyledAppBar>
+        <center style={{ backgroundColor: "#aed581" }}>
+          <PieChart
+            series={[
+              {
+                data: [
+                  { id: 0, value: ready, label: "Ready", color: "green" },
+                  { id: 1, value: notready, label: "Not Ready", color: "red" },
+                ],
+              },
+            ]}
+
+            width={500}
+            height={300}
           />
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              color: colorPalette.neutral,
-            }}
-          >
-            Deployment Readiness Tracker
-          </Typography>
-          {/* Navigation Links */}
-          <StyledLink variant="h6" component="div" to="/">
-            Home
-          </StyledLink>
-          <StyledLink variant="h6" component="div" to="/Training">
-            Training
-          </StyledLink>
-          <StyledLink variant="h6" component="div" to="/Medical">
-            Medical
-          </StyledLink>
-          <StyledLink variant="h6" component="div" to="/login">
-            Logout
-          </StyledLink>
-        </Toolbar>
-      </StyledAppBar>
-      <center>
-    <PieChart
-    series={[
-      {
-        data: [
-          { id: 0, value: ready, label: 'Ready', color: 'green' },
-          { id: 1, value: notready, label: 'Not Ready', color: 'red' },
-        ],
-      },
-    ]}
-    width={500}
-    height={300}
-  />
-    </center>
-        <PersonnelTable data={personnelData}/>
-    </Box>
+        </center>
+        <PersonnelTable data={personnelData} />
+      </Box>
     </>
   );
 };

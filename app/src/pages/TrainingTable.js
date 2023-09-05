@@ -20,7 +20,7 @@ export default function TrainingTable({ data }) {
   })
   return (
     <>
-    <center>
+    <center style={{ backgroundColor: "#aed581" }}>
     <PieChart
     series={[
       {

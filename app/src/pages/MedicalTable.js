@@ -22,7 +22,7 @@ export default function MedicalTable({data}) {
 
   return (
     <>
-    <center>
+    <center style={{ backgroundColor: "#aed581" }}>
     <PieChart
       series={[
         {
