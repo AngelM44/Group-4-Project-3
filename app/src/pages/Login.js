@@ -61,11 +61,7 @@ const Login = ({ setAuth }) => {
           <Box component={motion.div} {...fadeInUp}>
           </Box>
 
-          <Divider sx={{ my: 3 }} component={motion.div} {...fadeInUp}>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              OR
-            </Typography>
-          </Divider>
+
 
           <LoginForm setAuth={setAuth} />
 
