@@ -33,7 +33,7 @@ export default function AddPersonnel() {
     const handleSubmit = (event) => {
         event.preventDefault();
         var formData = new FormData(event.currentTarget) // Use formData.get('name') to get the value from the "Name" text field.
-        //isNaN(Number(formData.get('training_type_id'))) ? console.log(true) : console.log(false);
+
         let newPersonnel = {
             name: (formData.get('name') === null ? "Christopher Hesser" :
                 formData.get('name').toString().length === 0 ? "Christopher Hesser" : formData.get('name')),
@@ -46,14 +46,20 @@ export default function AddPersonnel() {
             deployable: (formData.get('deployable') === "Yes" ? "Yes" : "No"),
 
             medicalStatus: (formData.get('medicalStatus') === "green" ? "green" : "red"),
-            checkup_due_by: new Date("1999-12-31"), // (formData.get('checkup_due_by') instanceof Date ? formData.get('checkup_due_by') : new Date("1999-12-31")),
+            checkup_due_by: (new Date(formData.get('checkup_due_by')) === undefined ? new Date("12/31/1999") : 
+                            new Date(formData.get('checkup_due_by')) === null ? new Date("12/31/1999") : 
+                            new Date(formData.get('checkup_due_by')).toLocaleString() === "Invalid Date" ? 
+                            new Date("12/31/1999") : new Date(formData.get('checkup_due_by'))),
             immunization_due: (formData.get('immunization_due') === true ? true : false),
             trainingStatus: (formData.get('trainingStatus') === "green" ? "green" : "red"),
             training_type_id: (isNaN(Number(formData.get('training_type_id'))) ? Math.floor(Math.random() * 21) :
             Number(formData.get('training_type_id')) < 1 ? Math.floor(Math.random() * 21) :
             Number(formData.get('training_type_id')) > 20 ? Math.floor(Math.random() * 21) :
             formData.get('training_type_id').toString().length === 0 ? Math.floor(Math.random() * 21) : Number(formData.get('training_type_id'))),
-            date_completed: new Date("1999-12-31")// (formData.get('date_completed') instanceof Date ? formData.get('date_completed') : new Date("1999-12-31"))
+            date_completed: (new Date(formData.get('date_completed')) === undefined ? new Date("12/31/1999") : 
+                            new Date(formData.get('date_completed')) === null ? new Date("12/31/1999") : 
+                            new Date(formData.get('date_completed')).toLocaleString() === "Invalid Date" ? 
+                            new Date("12/31/1999") : new Date(formData.get('date_completed')))
         };
         fetch("http://localhost:8080/personnel/", {
             method: "POST",
