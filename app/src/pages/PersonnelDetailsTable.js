@@ -1,34 +1,49 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { PieChart } from '@mui/x-charts';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { PieChart } from "@mui/x-charts";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
 export default function PersonnelDetailsTable({ data }) {
   let ready = 0;
   let notready = 0;
   data.map((person) => {
-    if (person.deployable === 'Yes') ready += 1;
+    if (person.deployable === "Yes") ready += 1;
     else notready += 1;
   });
   return (
     <Box display="flex" justifyContent="center">
       <Card sx={{ maxWidth: 1000 }}>
         <CardContent>
-          <Box display="flex" justifyContent="center" style={{ backgroundColor: "#aed581" }}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            style={{ backgroundColor: "#aed581" }}
+          >
             <PieChart
               series={[
                 {
                   data: [
-                    { id: 0, value: ready, label: 'Deployable', color: 'green' },
-                    { id: 1, value: notready, label: 'Not Deployable', color: 'red' },
+                    {
+                      id: 0,
+                      value: ready,
+                      label: "Deployable",
+                      color: "green",
+                    },
+                    {
+                      id: 1,
+                      value: notready,
+                      label: "Not Deployable",
+                      color: "red",
+                    },
                   ],
                 },
               ]}
@@ -80,10 +95,18 @@ export default function PersonnelDetailsTable({ data }) {
                       <TableCell align="center">{row["DOD_number"]}</TableCell>
                     )}
                     {row["medical_id"] === undefined ? null : (
-                      <TableCell align="center">{row["medical_id"]}</TableCell>
+                      <TableCell align="center">
+                        <Link to={`/medical/${row["medical_id"]}`}>
+                          {row["medical_id"]}
+                        </Link>
+                      </TableCell>
                     )}
                     {row["training_id"] === undefined ? null : (
-                      <TableCell align="center">{row["training_id"]}</TableCell>
+                      <TableCell align="center">
+                        <Link to={`/training/${row["training_id"]}`}>
+                          {row["training_id"]}
+                        </Link>
+                      </TableCell>
                     )}
                   </TableRow>
                 ))}
