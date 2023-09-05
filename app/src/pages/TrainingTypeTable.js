@@ -13,9 +13,9 @@ export default function TrainingTypeTable({ data }) {
       <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
         <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
-            <TableCell align="center">ID</TableCell>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Description</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>ID</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>Name</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>Description</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -24,11 +24,11 @@ export default function TrainingTypeTable({ data }) {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 2, textAlign: 'center' } }}
             >
-              <TableCell component="th" scope="row" align="center">
+              <TableCell component="th" scope="row" align="center" sx={{ border: 2 }}>
                 {row.id}
               </TableCell>
-              <TableCell align="center">{row.name}</TableCell>
-              <TableCell align="center">{row["description"]}</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>{row.name}</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>{row["description"]}</TableCell>
             </TableRow>
           ))}
         </TableBody>

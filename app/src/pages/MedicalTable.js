@@ -49,11 +49,11 @@ export default function MedicalTable({data}) {
             sx={{ backgroundColor: "#899d73", border: 4, textAlign: "center" }}
           >
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Checkup Due By</TableCell>
-              <TableCell align="center">Immunization Due</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>ID</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Name</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Status</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Checkup Due By</TableCell>
+              <TableCell align="center" sx={{ border: 2 }}>Immunization Due</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -65,6 +65,7 @@ export default function MedicalTable({data}) {
                     border: 0,
                     px: 2,
                     textAlign: "center",
+                    border: 2,
                   },
                 }}
               >

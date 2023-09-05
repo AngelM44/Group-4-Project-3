@@ -36,21 +36,21 @@ export default function PersonnelDetailsTable({data}) {
       <Table sx={{ backgroundColor: '#d0e7b7', border: 2, borderRadius: 1, textAlign: 'center' }}>
         <TableHead sx={{ backgroundColor: '#899d73', border: 4, textAlign: 'center'}}>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="center">Deployable</TableCell>
-            <TableCell align="center">ID</TableCell>
-            <TableCell align="center">DOD_number</TableCell>
-            <TableCell align="center">Medical_id</TableCell>
-            <TableCell align="center">Training_id</TableCell>
+            <TableCell sx={{ border: 2 }}>Name</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>Deployable</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>ID</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>DOD_number</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>Medical_id</TableCell>
+            <TableCell align="center" sx={{ border: 2 }}>Training_id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ '&:last-child td, &:last-child th': { border: 2 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{ border: 2 }}>
                 {row.name}
               </TableCell>
               {row['deployable'] === undefined ? null : <TableCell align="center">{row['deployable']}</TableCell>}
